@@ -17,5 +17,5 @@ void Function::execute()
 
 void TestBlock::execute()
 {
-	std::cout << message << std::endl;
+	std::cout << *message << std::endl;
 }

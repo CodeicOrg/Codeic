@@ -16,7 +16,7 @@ public:
 
 class Function :public CodeBlock {
 public:
-	std::string name;
+	std::string* name;
 	StatementBlock* code = NULL;
 	virtual void execute();
 };
@@ -40,6 +40,6 @@ class EndBlock :public StatementBlock {
 
 class TestBlock :public OrderBlock {
 public:
-	std::string message;
+	std::string* message;
 	virtual void execute();
 };

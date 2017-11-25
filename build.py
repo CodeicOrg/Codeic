@@ -36,7 +36,9 @@ def getCode(path,list):
 
 def genMakeFileContent(list):
     content = []
+    # Append some message
     content.append('# Project:%s\n# Author: %s\n# Makefile created by %s\n\n' % (projectName,authorName,buildProjectName))
+    # Define OBJ
     content.append('OBJ = \\\n')
     id = 0
     for codeFile in list:
@@ -44,10 +46,12 @@ def genMakeFileContent(list):
         id = id + 1
     content[-1] = content[-1][:-2]
     content.append('\n')
+    # Append first command
     content.append('%s:$(OBJ)\n\t%s -o %s/%s $(OBJ)\n\n' % (BIN,COMPILER,OUTPUT,BIN))
+    # Append complie obj file command
     id = 0
     for codeFile in list:
-        content.append('%s/temp_%d.o:%s\n\t%s -c %s -o %s/temp_%d.o\n\n' % (INTERMEDIATE,id,codeFile,COMPILER,codeFile,INTERMEDIATE,id))
+        content.append('%s/temp_%d.o:%s\n\t%s -DDEBUG -c %s -o %s/temp_%d.o\n\n' % (INTERMEDIATE,id,codeFile,COMPILER,codeFile,INTERMEDIATE,id))
         id = id + 1
     content[-1] = content[-1][:-2]
     return content
