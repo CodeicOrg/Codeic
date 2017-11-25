@@ -17,6 +17,7 @@ OUTPUT = './build/output'
 INTERMEDIATE = './build/intermediate'
 BIN = 'Codeic.exe'
 SRC = './Codeic'
+ADDITION_COMMAND = '-DDEBUG'
 
 def createDir():
     if not os.path.exists(OUTPUT):
@@ -51,7 +52,7 @@ def genMakeFileContent(list):
     # Append complie obj file command
     id = 0
     for codeFile in list:
-        content.append('%s/temp_%d.o:%s\n\t%s -DDEBUG -c %s -o %s/temp_%d.o\n\n' % (INTERMEDIATE,id,codeFile,COMPILER,codeFile,INTERMEDIATE,id))
+        content.append('%s/temp_%d.o:%s\n\t%s %s -c %s -o %s/temp_%d.o\n\n' % (INTERMEDIATE,id,codeFile,COMPILER,ADDITION_COMMAND,codeFile,INTERMEDIATE,id))
         id = id + 1
     content[-1] = content[-1][:-2]
     return content
@@ -70,7 +71,8 @@ def build():
     os.system(makeCommand)
 
 def clean():
-    shutil.rmtree(BUILD_DIR)
+    if os.path.exists(BUILD_DIR):
+        shutil.rmtree(BUILD_DIR)
 
 def genMakeFile():
     list = []
@@ -80,16 +82,26 @@ def genMakeFile():
 def done():
     print('\nDone\n')
 
-
 def main():
+    global ADDITION_COMMAND
     argvLen = len(sys.argv)
     if argvLen<2:
         print('Not enough argument')
         return
     elif sys.argv[1] == 'build':
         build()
+    elif sys.argv[1] == 'release':
+        ADDITION_COMMAND = '-DRELEASE'
+        build()
+    elif sys.argv[1] == 'test':
+        i = 2
+        while not i == argvLen:
+            ADDITION_COMMAND += ' -D%s' % sys.argv[i]
+            i = i + 1
+        build()
     elif sys.argv[1] == 'clean':
         clean()
+        createDir()
     elif sys.argv[1] == 'genMakeFile':
         genMakeFile()
     else:
