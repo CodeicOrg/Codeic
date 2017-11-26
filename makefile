@@ -11,13 +11,13 @@ Codeic.exe:$(OBJ)
 	g++.exe -o ./build/output/Codeic.exe $(OBJ)
 
 ./build/intermediate/temp_0.o:./Codeic\codeBlock.cpp
-	g++.exe -DDEBUG -DTEST_CODE_BLOCK -c ./Codeic\codeBlock.cpp -o ./build/intermediate/temp_0.o
+	g++.exe -DDEBUG -c ./Codeic\codeBlock.cpp -o ./build/intermediate/temp_0.o
 
 ./build/intermediate/temp_1.o:./Codeic\debug.cpp
-	g++.exe -DDEBUG -DTEST_CODE_BLOCK -c ./Codeic\debug.cpp -o ./build/intermediate/temp_1.o
+	g++.exe -DDEBUG -c ./Codeic\debug.cpp -o ./build/intermediate/temp_1.o
 
 ./build/intermediate/temp_2.o:./Codeic\main.cpp
-	g++.exe -DDEBUG -DTEST_CODE_BLOCK -c ./Codeic\main.cpp -o ./build/intermediate/temp_2.o
+	g++.exe -DDEBUG -c ./Codeic\main.cpp -o ./build/intermediate/temp_2.o
 
 ./build/intermediate/temp_3.o:./Codeic\parser.cpp
-	g++.exe -DDEBUG -DTEST_CODE_BLOCK -c ./Codeic\parser.cpp -o ./build/intermediate/temp_3.o
+	g++.exe -DDEBUG -c ./Codeic\parser.cpp -o ./build/intermediate/temp_3.o

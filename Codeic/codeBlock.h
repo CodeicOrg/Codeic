@@ -8,7 +8,6 @@ class OrderBlock;
 class CycleBlock;
 class EndBlock;
 
-
 class CodeBlock {
 public:
 	virtual void execute();

@@ -1,11 +1,23 @@
 #include "debug.h"
 #ifdef DEBUG
-
-#ifdef  TEST_CODE_BLOCK
+using namespace std;
+Parser *parser;
+Function *mainFunc;
+void test_init()
+{
+	parser = new Parser();
+	mainFunc = new Function();
+}
 void test_codeBlock()
 {
 	OUTPUT("Code Block test start.");
-}
-#endif 
+	// Write code
+	TestBlock tb;
+	tb.message = new string("Hello world");
+	mainFunc->code = (StatementBlock*)&tb;
 
+	// Execute
+	parser->execute(mainFunc);
+	OUTPUT("Code Block test done.");
+}
 #endif
