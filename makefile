@@ -6,7 +6,8 @@ OBJ = \
 	./build/intermediate/temp_0.o \
 	./build/intermediate/temp_1.o \
 	./build/intermediate/temp_2.o \
-	./build/intermediate/temp_3.o 
+	./build/intermediate/temp_3.o \
+	./build/intermediate/temp_4.o 
 Codeic.exe:$(OBJ)
 	g++.exe -o ./build/output/Codeic.exe $(OBJ)
 
@@ -21,3 +22,6 @@ Codeic.exe:$(OBJ)
 
 ./build/intermediate/temp_3.o:./Codeic\parser.cpp
 	g++.exe -DDEBUG -c ./Codeic\parser.cpp -o ./build/intermediate/temp_3.o
+
+./build/intermediate/temp_4.o:./Codeic\variable.cpp
+	g++.exe -DDEBUG -c ./Codeic\variable.cpp -o ./build/intermediate/temp_4.o
