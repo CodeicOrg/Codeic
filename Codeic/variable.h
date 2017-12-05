@@ -7,12 +7,14 @@ class CObject
 
 };
 
+// manager varibale
+// 
 class VariableManager
 {
 public:
 	//push the variable to the variable pool
 	CObject* pushVariable(CObject *variable);
-	CObject 
+	CObject* getVariable();
 private:
 	std::vector<CObject*> variablePool;
 };

@@ -5,7 +5,7 @@ import shutil
 #PROJECT CONFIG
 projectName = 'Codeic'
 authorName = 'AaronRobert'
-buildProjectName = 'CodeicBuildTool 1.0'
+buildProjectName = 'CodeicBuildTool 1.1'
 
 #MAKE CONFIG
 makeCommand = 'mingw32-make.exe'
@@ -32,7 +32,8 @@ def getCode(path,list):
         if os.path.isdir(child):
             getCode(child,list)
         else:
-            if child.split('.')[-1]=='cpp':
+            if child.split('.')[-1]=='cpp' or child.split('.')[-1]=='c':
+                print(child + '\n')
                 list.append(child)
 
 def genMakeFileContent(list):
@@ -43,7 +44,7 @@ def genMakeFileContent(list):
     content.append('OBJ = \\\n')
     id = 0
     for codeFile in list:
-        content.append('\t%s/temp_%d.o \\\n' % (INTERMEDIATE,id))
+        content.append('\t%s \\\n' % (getTempFilePath(codeFile,id)))
         id = id + 1
     content[-1] = content[-1][:-2]
     content.append('\n')
@@ -52,15 +53,19 @@ def genMakeFileContent(list):
     # Append complie obj file command
     id = 0
     for codeFile in list:
-        content.append('%s/temp_%d.o:%s\n\t%s %s -c %s -o %s/temp_%d.o\n\n' % (INTERMEDIATE,id,codeFile,COMPILER,ADDITION_COMMAND,codeFile,INTERMEDIATE,id))
+        content.append('%s:%s\n\t%s %s -c %s -o %s\n\n' % (getTempFilePath(codeFile,id),codeFile,COMPILER,ADDITION_COMMAND,codeFile,getTempFilePath(codeFile,id)))
         id = id + 1
     content[-1] = content[-1][:-2]
     return content
 
-def WriteFile(path,content):
+def getTempFilePath(sourceFilePath,id):
+    path = '%s\%s' % (INTERMEDIATE,''.join(sourceFilePath.replace(SRC,'').split('\\')[0:-1]))
+    result = '%s\\temp_%d.o' % (path,id)
     if not os.path.exists(path):
-        print('Path not found!')
-        return
+        os.makedirs(path)
+    return result
+
+def WriteFile(path,content):
     file = open(path,'w')
     file.writelines(content)
     file.close()

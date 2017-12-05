@@ -3,7 +3,7 @@
 #include "util.h"
 #include "debug.h"
 
-int main()
+int codeicmain()
 {
 	std::cout << "Codeic" << std::endl;
 	test_init();
@@ -11,4 +11,5 @@ int main()
 #ifdef DEBUG
 	system("pause");
 #endif
+	return 0;
 }
