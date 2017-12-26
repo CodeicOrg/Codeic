@@ -2,7 +2,7 @@
 
 #include "iostream"
 
-void error(const char* message)
+void error_output(const char* message)
 {
     using namespace std;
     cout<<"[ERROR]"<<message;
