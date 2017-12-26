@@ -1,0 +1,22 @@
+运行环境:
+解释性	其他环境解释(Python)	解释型(C++)
+
+语句块 CodeBlock
+属性：参数个数、操作
+
+定义变量(number string list dictionary)
+
+解释器：
+Parser
+
+语句块种类:
+Function:内包含许多语句块
+Order:有入口和出口
+Cycle:条件判断，内含许多语句块
+End:终止
+Operation:有返回值的语句，放置在参数中
+
+如何执行：
+获取入口Function
+执行语句：
+	

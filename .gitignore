@@ -4,3 +4,11 @@ build/
 vsbuild/
 
 \.vs/
+
+Codeic/Codeic\.vcxproj
+
+Codeic/Codeic\.vcxproj\.filters
+
+Codeic/Codeic\.vcxproj\.user
+
+\.vscode/
