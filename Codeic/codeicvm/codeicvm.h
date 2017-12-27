@@ -11,7 +11,7 @@ class CodeicVM
 public:
     bool init();
     void close();
-    bool execute(int command);
+    bool execute(int command,int a = 0,int b = 0,int c = 0);
     const char* getDebugString();
 private:
     Vmstate* state;

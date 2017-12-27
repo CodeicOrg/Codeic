@@ -12,13 +12,14 @@ bool CodeicVM::init()
     state = new Vmstate;
 }
 
-bool CodeicVM::execute(int command)
+bool CodeicVM::execute(int command,int a,int b,int c)
 {
     vmdispatch(command)
     {
         vmcase(TEST)
         {
             state->debug = "Hello world";
+            vmbreak;
         }
     }
 }
