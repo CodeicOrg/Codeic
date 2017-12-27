@@ -24,7 +24,7 @@ bool CodeicVM::execute(int command,int a,int b,int c)
     }
 }
 
-const char* CodeicVM::getDebugString()
+std::string CodeicVM::getDebugString()
 {
     return state->debug;
 }

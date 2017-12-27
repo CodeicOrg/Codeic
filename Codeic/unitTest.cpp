@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "unitTest.h"
 #ifdef DEBUG
 using namespace std;
 Parser *parser;
