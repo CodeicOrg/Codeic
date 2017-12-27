@@ -10,8 +10,8 @@ int main(int argc,char **argv)
 	std::cout << "Codeic" << std::endl;
 	CodeicVM vm;
 	vm.init();
-	vm.execute("print(\'Hello world\')");
-	vm.close();
+	vm.execute("i = 10;");
+	//vm.close();
 	// test_init();
 	// test_codeBlock();
 	return 0;
