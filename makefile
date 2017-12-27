@@ -4,7 +4,7 @@
 
 OBJ = \
 	./build/intermediate\\temp_0.o \
-	./build/intermediate\\temp_1.o \
+	./build/intermediate\codeicvm\temp_1.o \
 	./build/intermediate\\temp_2.o \
 	./build/intermediate\\temp_3.o \
 	./build/intermediate\\temp_4.o \
@@ -16,8 +16,8 @@ Codeic.exe:$(OBJ)
 ./build/intermediate\\temp_0.o:./Codeic\codeBlock.cpp
 	g++.exe -DDEBUG -c ./Codeic\codeBlock.cpp -o ./build/intermediate\\temp_0.o
 
-./build/intermediate\\temp_1.o:./Codeic\codeicvm.cpp
-	g++.exe -DDEBUG -c ./Codeic\codeicvm.cpp -o ./build/intermediate\\temp_1.o
+./build/intermediate\codeicvm\temp_1.o:./Codeic\codeicvm\codeicvm.cpp
+	g++.exe -DDEBUG -c ./Codeic\codeicvm\codeicvm.cpp -o ./build/intermediate\codeicvm\temp_1.o
 
 ./build/intermediate\\temp_2.o:./Codeic\debug.cpp
 	g++.exe -DDEBUG -c ./Codeic\debug.cpp -o ./build/intermediate\\temp_2.o
