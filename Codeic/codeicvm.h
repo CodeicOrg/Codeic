@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CodeicVM\src\lua.h"
+//#include "CodeicVM\src\lua.h"
 #include "print.h"
 
 class CodeicVM
