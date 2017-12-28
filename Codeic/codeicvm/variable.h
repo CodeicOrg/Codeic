@@ -21,7 +21,10 @@ public:
     void setValue(int value);
     void setValue(double value);
     void setValue(std::string value);
-    int getValue();
+    bool getBool();
+    int getInt();
+    double getDouble();
+    std::string getString();
 };
 
 #ifdef DEBUG
@@ -35,7 +38,7 @@ public:
     {
         Variable v;
         v.setValue(10);
-        cout<<v.value<<endl;
+        cout<<v.getInt()<<endl;
     }
 };
 #endif

@@ -9,7 +9,8 @@ void Variable::setValue(bool value)
     {
         _v = new char;
     }
-    *_v = value;
+    *_v = value?1:0;
+    this->value = _v;
 }
 
 void Variable::setValue(int value)
@@ -20,6 +21,7 @@ void Variable::setValue(int value)
         _v = new int;
     }
     *_v = value;
+    this->value = _v;
 }
 
 void Variable::setValue(double value)
@@ -30,6 +32,7 @@ void Variable::setValue(double value)
         _v = new double;
     }
     *_v = value;
+    this->value = _v;
 }
 
 void Variable::setValue(string value)
@@ -40,9 +43,25 @@ void Variable::setValue(string value)
         _v = new string;
     }
     *_v = value;
+    this->value = _v;
 }
 
-int Variable::getValue()
+bool Variable::getBool()
+{
+    return *((char*)this->value);
+}
+
+int Variable::getInt()
 {
     return *((int*)this->value);
+}
+
+double Variable::getDouble()
+{
+    return *((double*)this->value);
+}
+
+string Variable::getString()
+{
+    return *((string*)this->value);
 }

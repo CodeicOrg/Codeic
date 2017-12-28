@@ -10,6 +10,7 @@
 bool CodeicVM::init()
 {
     state = new Vmstate;
+	return true;
 }
 
 bool CodeicVM::execute(int command,int a,int b,int c)
@@ -22,6 +23,7 @@ bool CodeicVM::execute(int command,int a,int b,int c)
             vmbreak;
         }
     }
+	return true;
 }
 
 std::string CodeicVM::getDebugString()
