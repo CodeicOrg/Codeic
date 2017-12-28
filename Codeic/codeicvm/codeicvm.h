@@ -14,7 +14,7 @@ class CodeicVM
 public:
     bool init();
     void close();
-    bool execute(int command,int a = 0,int b = 0,int c = 0);
+    bool execute(const int command,const void* a = 0,const void* b = 0,const void* c = 0);
     std::string getDebugString();
 private:
     Vmstate* state;
@@ -25,5 +25,10 @@ class Vmstate
 public:
 	std::map<VariableIdentifier, Variable> variablePool;
     std::string debug;
-    std::vector<char> state;
+	/*
+	the scope stack.
+	push_back a current variablePool iterator when enter a new child scope.
+	remove the current iterator and use it to delete a range of variable in variablePool when exit the cureent scope.
+	*/
+    std::vector<std::map<VariableIdentifier,Variable>::iterator> scopeStack;
 };
