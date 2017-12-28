@@ -84,3 +84,8 @@ void Variable::deleteValue()
 	case STRING:delete (string*)value; break;
 	}
 }
+
+bool VariableIdentifier::operator==(const VariableIdentifier & v1)
+{
+	return scope == v1.scope&&name == v1.name;
+}

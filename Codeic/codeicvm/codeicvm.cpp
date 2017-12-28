@@ -22,6 +22,10 @@ bool CodeicVM::execute(int command,int a,int b,int c)
             state->debug = "Hello world";
             vmbreak;
         }
+		vmcase(PUSH)
+		{
+			
+		}
     }
 	return true;
 }

@@ -2,6 +2,13 @@
 
 #include <string>
 
+struct VariableIdentifier
+{
+	std::string scope;
+	std::string name;
+	bool operator==(const VariableIdentifier& v1);
+};
+
 typedef enum
 {
     NIL,
@@ -42,9 +49,27 @@ class UnitTest_Variable
 public:
     static void test()
     {
-        Variable v;
-        v.setValue(10);
-        cout<<v.getInt()<<endl;
+		Variable vbool;
+		vbool.setValue(true);
+		cout << "VBOOL:" << vbool.getBool() << endl;
+		Variable vint;
+		vint.setValue(1024);
+		cout << "VINT:" << vint.getInt() << endl;
+		Variable vdouble;
+		vdouble.setValue(1.23);
+		cout << "VDOUBLE:" << vdouble.getDouble() << endl;
+		Variable vstring;
+		string _v = "Hello world";
+		vstring.setValue(_v);
+		cout << "VSTRING:" << vstring.getString() << endl;
+
+		cout << "Change value type test:" << endl;
+		Variable v1;
+		v1.setValue(10);
+		v1.setValue(_v);
+		if (v1.type == STRING)
+			cout << v1.getString() << endl;
+		return;
     }
 };
 #endif

@@ -2,5 +2,7 @@
 
 typedef enum
 {
-    TEST
+    TEST,
+	PUSH,
+	POP
 }OpCode;

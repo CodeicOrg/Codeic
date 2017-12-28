@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include "variable.h"
 
 class CodeicVM;
 class Vmstate;
@@ -22,7 +23,7 @@ private:
 class Vmstate
 {
 public:
-    
+	std::map<VariableIdentifier, Variable> variablePool;
     std::string debug;
     std::vector<char> state;
 };
