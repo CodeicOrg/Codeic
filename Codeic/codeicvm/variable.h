@@ -25,6 +25,12 @@ public:
     int getInt();
     double getDouble();
     std::string getString();
+	~Variable()
+	{
+		deleteValue();
+	}
+private:
+	void deleteValue();
 };
 
 #ifdef DEBUG

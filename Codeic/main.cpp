@@ -6,6 +6,7 @@
 #include "codeicvm\opcodes.h"
 
 #include "codeicvm\variable.h"
+
 int main(int argc,char **argv)
 {
 	using namespace std;

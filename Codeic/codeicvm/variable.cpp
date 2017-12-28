@@ -5,9 +5,11 @@ using namespace std;
 void Variable::setValue(bool value)
 {
     char *_v = (char*)this->value;
-    if(type!=BOOL)
+	if (type != BOOL)
     {
+		if (type != NIL)deleteValue();
         _v = new char;
+		type = BOOL;
     }
     *_v = value?1:0;
     this->value = _v;
@@ -18,7 +20,9 @@ void Variable::setValue(int value)
     int *_v = (int*)this->value;
     if(type!=INT)
     {
+		if (type != NIL)deleteValue();
         _v = new int;
+		type = INT;
     }
     *_v = value;
     this->value = _v;
@@ -29,7 +33,9 @@ void Variable::setValue(double value)
     double *_v = (double*)this->value;
     if(type!=DOUBLE)
     {
+		if (type != NIL)deleteValue();
         _v = new double;
+		type = DOUBLE;
     }
     *_v = value;
     this->value = _v;
@@ -40,7 +46,9 @@ void Variable::setValue(string value)
     string *_v = (string*)this->value;
     if(type!=STRING)
     {
+		if (type != NIL)deleteValue();
         _v = new string;
+		type = STRING;
     }
     *_v = value;
     this->value = _v;
@@ -64,4 +72,15 @@ double Variable::getDouble()
 string Variable::getString()
 {
     return *((string*)this->value);
+}
+
+void Variable::deleteValue()
+{
+	switch (type)
+	{
+	case BOOL:delete (char*)value; break;
+	case INT:delete (int*)value; break;
+	case DOUBLE:delete (double*)value; break;
+	case STRING:delete (string*)value; break;
+	}
 }
