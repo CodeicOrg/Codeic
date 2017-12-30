@@ -33,8 +33,22 @@ bool CodeicVM::execute(const int command, const void* a,const void* b, const voi
 		}
 		vmcase(PUSH)
 		{
-			VariableIdentifier * _v = (VariableIdentifier*)a;
-			state->variablePool.push_back(*_v);
+			state->variablePool.push_back(*(VariableIdentifier*)a);
+			vmbreak;
+		}
+		vmcase(SET)
+		{
+			VariableIdentifier* vi_p = find(*(VariableIdentifier*)a);
+			if (!vi_p)return false;
+			vi_p->variable = (Variable*)b;
+			vmbreak;
+		}
+		vmcase(GET)
+		{
+			VariableIdentifier* vi_p = find(*(VariableIdentifier*)a);
+			if (!vi_p)return false;
+			output = state->output = *vi_p->variable;
+			vmbreak;
 		}
     }
 	return true;
