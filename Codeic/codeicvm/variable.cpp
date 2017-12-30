@@ -2,16 +2,23 @@
 
 using namespace std;
 
+VariableIdentifier::VariableIdentifier():scope(),name()
+{
+	variable = new Variable;
+}
+
 VariableIdentifier::VariableIdentifier(const char * scope, const char * name)
 {
 	this->scope = scope;
 	this->name = name;
+	variable = new Variable;
 }
 
 VariableIdentifier::VariableIdentifier(std::string scope, std::string name)
 {
 	this->scope = scope;
 	this->name = name;
+	variable = new Variable;
 }
 
 bool VariableIdentifier::operator==(const VariableIdentifier & v1)

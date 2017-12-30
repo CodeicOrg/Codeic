@@ -69,6 +69,17 @@ public:
 		vm.execute(SET,&vi, &vl);
 		vm.execute(GET, &vi);
 		int valueGet = vm.output.getInt();
+		VariableIdentifier va("global", "a");
+		va.variable->setValue(1);
+		VariableIdentifier vb("global", "b");
+		vb.variable->setValue(2);
+		vm.execute(PUSH, &va);
+		vm.execute(PUSH, &vb);
+		vm.execute(MOV, &va, &vb);
+		vm.execute(GET, &va);
+		int a = vm.output.getInt();
+		vm.execute(GET, &vb);
+		int b = vm.output.getInt();
 		vm.execute(POPSCOPE);
 		return;
 	}

@@ -50,6 +50,14 @@ bool CodeicVM::execute(const int command, const void* a,const void* b, const voi
 			output = state->output = *vi_p->variable;
 			vmbreak;
 		}
+		vmcase(MOV)
+		{
+			VariableIdentifier* vi_pa = find(*(VariableIdentifier*)a);
+			VariableIdentifier* vi_pb = find(*(VariableIdentifier*)b);
+			if (!vi_pa || !vi_pb)return false;
+			*vi_pa->variable = *vi_pb->variable;
+			vmbreak;
+		}
     }
 	return true;
 }

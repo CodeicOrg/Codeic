@@ -10,10 +10,10 @@ struct VariableIdentifier
 	std::string scope;
 	std::string name;
 	Variable* variable;
+	VariableIdentifier();
 	VariableIdentifier(const char* scope, const char* name);
 	VariableIdentifier(std::string scope, std::string name);
 	bool operator==(const VariableIdentifier& v1);
-	VariableIdentifier() = default;
 };
 
 typedef enum

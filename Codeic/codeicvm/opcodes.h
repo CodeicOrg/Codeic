@@ -33,7 +33,7 @@ typedef enum
 
 	/*
 	move a variable to another variable
-	move b to a
+	move b to a.Equivalent to a = b
 	a:		(VariableIdentifier)variable a
 	b:		(VariableIdentifier)variable b
 	*/
