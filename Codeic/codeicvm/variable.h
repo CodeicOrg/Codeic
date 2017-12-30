@@ -2,10 +2,16 @@
 
 #include <string>
 
+class Variable;
+struct VariableIdentifier;
+
 struct VariableIdentifier
 {
 	std::string scope;
 	std::string name;
+	Variable* variable;
+	VariableIdentifier(const char* scope, const char* name);
+	VariableIdentifier(std::string scope, std::string name);
 	bool operator==(const VariableIdentifier& v1);
 };
 
@@ -17,7 +23,7 @@ typedef enum
     DOUBLE,
     STRING
 }VariableType;
-class Variable;
+
 
 class Variable
 {

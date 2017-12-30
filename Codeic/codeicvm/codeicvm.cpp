@@ -1,5 +1,4 @@
 #include "codeicvm.h"
-#include "opcodes.h"
 #include <string.h>
 
 #define vmdispatch(o)	switch(o)
@@ -13,18 +12,29 @@ bool CodeicVM::init()
 	return true;
 }
 
-bool CodeicVM::execute(const int command, const void* a = 0, const void* b = 0, const void* c = 0)
+bool CodeicVM::execute(const int command, const void* a,const void* b, const void* c)
 {
     vmdispatch(command)
     {
-        vmcase(TEST)
-        {
-            state->debug = "Hello world";
-            vmbreak;
-        }
+		vmcase(PUSHSCOPE)
+		{
+			state->scopeStack.push(state->variablePool.size());
+			vmbreak;
+		}
+		vmcase(POPSCOPE)
+		{
+			int index = state->scopeStack.top();
+			state->scopeStack.pop();
+			for (int i = state->variablePool.size() - 1; i >= index; --i)
+			{
+				state->variablePool.pop_back();
+			}
+			vmbreak;
+		}
 		vmcase(PUSH)
 		{
-			
+			VariableIdentifier * _v = (VariableIdentifier*)a;
+			state->variablePool.push_back(*_v);
 		}
     }
 	return true;

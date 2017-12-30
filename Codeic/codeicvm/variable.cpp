@@ -2,6 +2,24 @@
 
 using namespace std;
 
+VariableIdentifier::VariableIdentifier(const char * scope, const char * name)
+{
+	this->scope = scope;
+	this->name = name;
+}
+
+VariableIdentifier::VariableIdentifier(std::string scope, std::string name)
+{
+	this->scope = scope;
+	this->name = name;
+}
+
+bool VariableIdentifier::operator==(const VariableIdentifier & v1)
+{
+	return scope == v1.scope&&name == v1.name;
+}
+
+
 void Variable::setValue(bool value)
 {
     char *_v = (char*)this->value;
@@ -85,7 +103,3 @@ void Variable::deleteValue()
 	}
 }
 
-bool VariableIdentifier::operator==(const VariableIdentifier & v1)
-{
-	return scope == v1.scope&&name == v1.name;
-}

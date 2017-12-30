@@ -11,6 +11,7 @@ int main(int argc,char **argv)
 {
 	using namespace std;
 	std::cout << "Codeic" << std::endl;
-	UnitTest_Variable::test();
+	//UnitTest_Variable::test();
+	UnitTest_CodeicVM::test();
 	return 0;
 }

@@ -5,6 +5,8 @@
 #include <map>
 #include <string>
 #include "variable.h"
+#include "opcodes.h"
+#include <stack>
 
 class CodeicVM;
 class Vmstate;
@@ -23,12 +25,36 @@ private:
 class Vmstate
 {
 public:
-	std::map<VariableIdentifier, Variable> variablePool;
+	std::vector<VariableIdentifier> variablePool;
     std::string debug;
 	/*
 	the scope stack.
-	push_back a current variablePool iterator when enter a new child scope.
-	remove the current iterator and use it to delete a range of variable in variablePool when exit the cureent scope.
+	push_back a current variablePool index when enter a new child scope.
+	remove the current index and use it to delete a range of variable in variablePool when exit the cureent scope.
 	*/
-    std::vector<std::map<VariableIdentifier,Variable>::iterator> scopeStack;
+    std::stack<int> scopeStack;
+	Vmstate():variablePool(),scopeStack()
+	{
+		scopeStack.push(0);
+	}
 };
+
+#ifdef DEBUG
+#include "..\print.h"
+#include "iostream"
+using namespace std;
+class UnitTest_CodeicVM
+{
+public:
+	static void test()
+	{
+		CodeicVM vm;
+		vm.init();
+		vm.execute(PUSHSCOPE);
+		VariableIdentifier vi("global", "test");
+		vm.execute(PUSH, &vi);
+		vm.execute(POPSCOPE);
+		return;
+	}
+};
+#endif
