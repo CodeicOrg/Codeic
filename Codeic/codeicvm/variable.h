@@ -14,6 +14,7 @@ struct VariableIdentifier
 	VariableIdentifier(const char* scope, const char* name);
 	VariableIdentifier(std::string scope, std::string name);
 	bool operator==(const VariableIdentifier& v1);
+	static VariableIdentifier getVariableIdentifer(std::string str);
 };
 
 typedef enum
@@ -35,6 +36,7 @@ public:
     void setValue(int value);
     void setValue(double value);
     void setValue(std::string value);
+	void setValueAndType(std::string value);
     bool getBool();
     int getInt();
     double getDouble();
@@ -43,6 +45,10 @@ public:
 	{
 		deleteValue();
 	}
+	enum Exception
+	{
+		INVALID_VALUE
+	};
 private:
 	void deleteValue();
 };

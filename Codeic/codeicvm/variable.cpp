@@ -1,6 +1,9 @@
 #include "variable.h"
+#include <sstream>
 
 using namespace std;
+
+#define EXCEPTION Variable::Exception
 
 VariableIdentifier::VariableIdentifier():scope(),name()
 {
@@ -26,6 +29,27 @@ bool VariableIdentifier::operator==(const VariableIdentifier & v1)
 	return scope == v1.scope&&name == v1.name;
 }
 
+VariableIdentifier VariableIdentifier::getVariableIdentifer(string fullName)
+{
+	string scopeName;
+	string variableName;
+	const string split("::");
+	int splitIndex = fullName.find(split);
+	if (splitIndex != std::string::npos)
+	{
+		scopeName = fullName.substr(0, splitIndex);
+		variableName = fullName.substr(splitIndex + split.size());
+	}
+	else
+	{
+		scopeName = "";
+		variableName = fullName;
+	}
+	VariableIdentifier vi;
+	vi.scope = scopeName;
+	vi.name = variableName;
+	return vi;
+}
 
 void Variable::setValue(bool value)
 {
@@ -77,6 +101,35 @@ void Variable::setValue(string value)
     }
     *_v = value;
     this->value = _v;
+}
+
+void Variable::setValueAndType(string value)
+{
+	if (value[0] == '\"')
+	{
+		setValue(value.substr(1, value.size() - 1));
+		type = STRING;
+	}
+	if (value[0] == 't' || value[0] == 'f')
+	{	
+		if (value == "true")setValue(true);
+		else if (value == "false")setValue(false);
+		else throw EXCEPTION::INVALID_VALUE;
+		type = BOOL;
+	}
+	if (value.find('.') == string::npos)
+	{
+		istringstream istr(value);
+		double _v;
+		istr >> _v;
+		setValue(_v);
+		type = DOUBLE
+	}
+	istringstream istr(value);
+	int _v;
+	istr >> _v;
+	setValue(_v);
+	type = INT;
 }
 
 bool Variable::getBool()
