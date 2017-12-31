@@ -1,5 +1,6 @@
 #include "CodeicVMParser.h"
 #include "codeicvm\opcodes.h"
+#include "print.h"
 
 #define vmdispatch(o)	switch(o)
 #define vmcase(l)	case l:
@@ -60,10 +61,46 @@ void CodeicVMParser::run(const char *path)
 					switch (e)
 					{
 					case Variable::Exception::INVALID_VALUE:
-						cout<<"[ERROR]Invalid value:"<<variableStr<<endl;//TODO
+						ostringstream oss;
+						oss << "Invalid variable:" << variableStr;
+						error_output(oss.str());
+						break;
 					}
 				}
 				vm.execute(SET, &vi, &v);
+				vmbreak;
+			}
+			vmcase(GET)
+			{
+				string fullName;
+				file >> fullName;
+				VariableIdentifier vi = VariableIdentifier::getVariableIdentifer(fullName);
+				if (vm.execute(GET, &vi))
+				{
+					ostringstream oss;
+					oss << "GET:"<<vm.output.getValue();
+					debug_output(oss.str());
+				}
+				else
+				{
+					ostringstream oss;
+					oss << "Variable not  found:" << fullName;
+					debug_output(oss.str());
+				}
+				vmbreak;
+			}
+			vmcase(MOV)
+			{
+				string va, vb;
+				file >> va >> vb;
+				VariableIdentifier via = VariableIdentifier::getVariableIdentifer(va);
+				VariableIdentifier vib = VariableIdentifier::getVariableIdentifer(vb);
+				if (!vm.execute(MOV, &via, &vib))
+				{
+					ostringstream oss;
+					oss << "Variable not found:" << va << "," << vb;
+					debug_output(oss.str());
+				}
 				vmbreak;
 			}
 		}

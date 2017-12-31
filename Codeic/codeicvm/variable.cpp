@@ -123,13 +123,39 @@ void Variable::setValueAndType(string value)
 		double _v;
 		istr >> _v;
 		setValue(_v);
-		type = DOUBLE
+		type = DOUBLE;
 	}
 	istringstream istr(value);
 	int _v;
 	istr >> _v;
 	setValue(_v);
 	type = INT;
+}
+
+string Variable::getValue()
+{
+	switch (type)
+	{
+		case BOOL:
+			return getBool() ? "true" : "false";
+		case INT:
+		{
+			ostringstream oss;
+			oss << getInt();
+			return oss.str();
+		}
+		case DOUBLE:
+		{
+			ostringstream oss;
+			oss << getDouble();
+			return oss.str();
+		}
+		case STRING:
+		{
+			return getString();
+		}
+	}
+	return "";
 }
 
 bool Variable::getBool()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <sstream>
 
 class Variable;
 struct VariableIdentifier;
@@ -37,6 +38,7 @@ public:
     void setValue(double value);
     void setValue(std::string value);
 	void setValueAndType(std::string value);
+	std::string getValue();
     bool getBool();
     int getInt();
     double getDouble();
