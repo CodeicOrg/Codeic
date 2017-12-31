@@ -53,12 +53,12 @@ private:
 #ifdef DEBUG
 #include "..\print.h"
 #include "iostream"
-using namespace std;
 class UnitTest_CodeicVM
 {
 public:
 	static void test()
 	{
+		using namespace std;
 		CodeicVM vm;
 		vm.init();
 		vm.execute(PUSHSCOPE);

@@ -16,14 +16,16 @@ public:
 	void run(const char *path);
 };
 
-#define OPCODES_COUNT 6
-
-std::string opcodes[OPCODES_COUNT] = 
+#ifdef DEBUG
+class UnitTest_CodeicVMParser
 {
-	"pushscope",//single command
-	"popscope",//single command
-	"push",//eg. push a(the default scople is empty)   push global::a(the scope is named as global)
-	"set",
-	"get",
-	"mov"
+public:
+	static void test()
+	{
+		using namespace std;
+		CodeicVMParser cvp;
+		cvp.run("../vmlangExample/main.s");
+		return;
+	}
 };
+#endif

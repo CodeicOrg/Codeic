@@ -6,25 +6,43 @@
 #define vmcase(l)	case l:
 #define vmbreak		break
 
+
+#define OPCODES_COUNT 6
+
+std::string parserOpcodes[OPCODES_COUNT] =
+{
+	"pushscope",//single command
+	"popscope",//single command
+	"push",//eg. push a(the default scople is empty)   push global::a(the scope is named as global)
+	"set",
+	"get",
+	"mov"
+};
+
 using namespace std;
 
 void CodeicVMParser::run(const char *path)
 {
 	vm.init();
 	ifstream file(path);
+	if (!file.is_open())
+	{
+		error_output("File not found");
+		return;
+	}
 	string s;
 	while (file >> s)
 	{
 		int commandIndex = -1;
 		for (int i = 0; i < OPCODES_COUNT; ++i)
 		{
-			if (opcodes[i] == s)
+			if (parserOpcodes[i] == s)
 			{
 				commandIndex = i;
 				break;
 			}
 		}
-		if (commandIndex == -1)cout << "Invalid command";
+		if (commandIndex == -1)cout << "Invalid command"<<endl;
 		vmdispatch(commandIndex)
 		{
 			vmcase(PUSHSCOPE)
