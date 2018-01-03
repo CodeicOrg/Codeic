@@ -1,5 +1,5 @@
 pushscope
 push global::a
-set global::a 1024.1
+set global::a "Helloworld
 get global::a
 popscope

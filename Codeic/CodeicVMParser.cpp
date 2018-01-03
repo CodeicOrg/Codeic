@@ -14,7 +14,7 @@ std::string parserOpcodes[OPCODES_COUNT] =
 	"pushscope",//single command
 	"popscope",//single command
 	"push",//eg. push a(the default scople is empty)   push global::a(the scope is named as global)
-	"set",
+	"set",//eg. set global::a 1024(for int type)  set global::a 1024.1(for double type)  set global::a "Helloworld(for string type)  set global::a true(for bool type)
 	"get",
 	"mov"
 };
