@@ -108,28 +108,28 @@ void Variable::setValueAndType(string value)
 	if (value[0] == '\"')
 	{
 		setValue(value.substr(1, value.size() - 1));
-		type = STRING;
+		return;//STRING
 	}
 	if (value[0] == 't' || value[0] == 'f')
 	{	
 		if (value == "true")setValue(true);
 		else if (value == "false")setValue(false);
 		else throw EXCEPTION::INVALID_VALUE;
-		type = BOOL;
+		return;//BOOL
 	}
-	if (value.find('.') == string::npos)
+	if (value.find('.') != string::npos)
 	{
 		istringstream istr(value);
 		double _v;
 		istr >> _v;
 		setValue(_v);
-		type = DOUBLE;
+		return;//DOUBLE
 	}
 	istringstream istr(value);
 	int _v;
 	istr >> _v;
 	setValue(_v);
-	type = INT;
+	return;//INT
 }
 
 string Variable::getValue()
