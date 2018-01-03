@@ -123,4 +123,5 @@ void CodeicVMParser::run(const char *path)
 			}
 		}
 	}
+	return;
 }

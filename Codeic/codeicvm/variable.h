@@ -43,10 +43,6 @@ public:
     int getInt();
     double getDouble();
     std::string getString();
-	~Variable()
-	{
-		deleteValue();
-	}
 	enum Exception
 	{
 		INVALID_VALUE

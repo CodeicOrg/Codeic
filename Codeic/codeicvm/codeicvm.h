@@ -39,14 +39,15 @@ public:
 	Variable output;
 private:
 	Vmstate* state;
-	VariableIdentifier* find(VariableIdentifier identifer)
+	VariableIdentifier* find(const VariableIdentifier identifer)
 	{
 		//越后面的变量越常用
 		for (int i = state->variablePool.size() - 1; i >= 0; --i)
 		{
-			if (state->variablePool[i] == identifer)return &state->variablePool[i];
+			if (state->variablePool[i] == identifer)
+				return &state->variablePool[i];
 		}
-		return 0;
+		return nullptr;
 	}
 };
 

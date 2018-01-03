@@ -182,10 +182,9 @@ void Variable::deleteValue()
 {
 	switch (type)
 	{
-	case BOOL:delete (char*)value; break;
-	case INT:delete (int*)value; break;
-	case DOUBLE:delete (double*)value; break;
-	case STRING:delete (string*)value; break;
+	case BOOL:delete (char*)value; value = nullptr; break;
+	case INT:delete (int*)value; value = nullptr; break;
+	case DOUBLE:delete (double*)value; value = nullptr; break;
+	case STRING:delete (string*)value; value = nullptr; break;
 	}
 }
-
