@@ -11,7 +11,7 @@ buildProjectName = 'CodeicBuildTool 1.1'
 makeCommand = 'mingw32-make.exe'
 
 #MAKE FILE CONFIG
-COMPILER = 'g++.exe'
+COMPILER = 'g++.exe -std=gnu++0x'
 BUILD_DIR = './build'
 OUTPUT = './build/output'
 INTERMEDIATE = './build/intermediate'
